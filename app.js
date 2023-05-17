@@ -115,12 +115,16 @@ app.get("/b", async (req, res) => {
 
 app.get("/test", async (req, res) => {
     
-    const date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+    var date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+    
+    date = date.split(",");
+    
+    date = date[0];
+    date=date.split("/");
 
-    //console.log();
-    const d = date.getDate();
-    const m = date.getMonth()+1;
-    const y= date.getFullYear();
+    const d = date[0];
+    const m = date[1];
+    const y= date[2];
 
     const get_all = await todays.find({});
     var easy = [];
@@ -154,13 +158,20 @@ app.get("/test", async (req, res) => {
 
 app.post("/submit_test", async (req,res)=>{
 
-    const date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+    var date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+    
+    date = date.split(",");
+    
+    date = date[0];
+    date=date.split("/");
+
+    const d = date[0];
+    const m = date[1];
+    const y= date[2];
     if(date.getDay()===7){
         var diff = req.body.ans;
 
-        const d = date.getDate();
-        const m = date.getMonth()+1;
-        const y= date.getFullYear();
+        
         const dd = d+"-"+m+"-"+y;
         const today_data = new todays({date:dd,scoreBot:66,self:-1*diff,easy:[],medium:[],hard:[]});
 
@@ -181,10 +192,16 @@ app.post("/submit_test", async (req,res)=>{
 
 app.get("/", async (req, res) => {
     
-    const date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
-    const d = date.getDate();
-    const m = date.getMonth()+1;
-    const y= date.getFullYear();
+    var date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+    
+    date = date.split(",");
+    
+    date = date[0];
+    date=date.split("/");
+
+    const d = date[0];
+    const m = date[1];
+    const y= date[2];
     
 
 
@@ -195,11 +212,16 @@ app.get("/", async (req, res) => {
 
 app.post("/submit", async (req,res)=>{
 
-    const date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
-    const d = date.getDate();
-    const m = date.getMonth()+1;
-    const y= date.getFullYear();
+    var date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+    
+    date = date.split(",");
+    
+    date = date[0];
+    date=date.split("/");
 
+    const d = date[0];
+    const m = date[1];
+    const y= date[2];
     const dd = d+"-"+m+"-"+y;
 
     var easylinks = req.body.easylinks;
