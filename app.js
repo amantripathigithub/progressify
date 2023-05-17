@@ -47,7 +47,7 @@ let today = new Schema({
   });
 
   
-  
+
   
 mongoose.connect(DB).then(()=>{
     console.log("connected to database");
@@ -115,7 +115,8 @@ app.get("/b", async (req, res) => {
 
 app.get("/test", async (req, res) => {
     
-    const date = new Date();
+    const date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
+
     //console.log();
     const d = date.getDate();
     const m = date.getMonth()+1;
@@ -153,7 +154,7 @@ app.get("/test", async (req, res) => {
 
 app.post("/submit_test", async (req,res)=>{
 
-    const date = new Date();
+    const date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
     if(date.getDay()===7){
         var diff = req.body.ans;
 
@@ -180,7 +181,7 @@ app.post("/submit_test", async (req,res)=>{
 
 app.get("/", async (req, res) => {
     
-    const date = new Date();
+    const date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
     const d = date.getDate();
     const m = date.getMonth()+1;
     const y= date.getFullYear();
@@ -194,7 +195,7 @@ app.get("/", async (req, res) => {
 
 app.post("/submit", async (req,res)=>{
 
-    const date = new Date();
+    const date = new Date().toLocaleString(undefined, {timeZone: 'Asia/Kolkata'});
     const d = date.getDate();
     const m = date.getMonth()+1;
     const y= date.getFullYear();
