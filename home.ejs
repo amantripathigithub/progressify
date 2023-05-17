@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry</title>
+</head>
+<body>
+
+    
+
+    <form action="/submit" method="post">
+    <h1><%= d+" "+m +" "+y %></h1>
+    <label for="d" style="display: none;"><%= d%></label>
+    <label for="m" style="display: none;"><%= m%></label>
+    <label for="y" style="display: none;"><%= y%></label>
+    <input type="number" for="score_bot" id="scb" name="scb" style="display: none;"></input>
+    <input type="number" for="score_self"  id="scs" name="scs" style="display: none;"></input>
+    <div id="potd">
+        <h3>POTD-1</h3>
+        <input type="checkbox" id="done-1">
+        <label >DONE</label>
+        <input type="checkbox" id="lce">
+        <label >easy - 2*</label>
+        <input type="checkbox" id="lcm">
+        <label >medium - 5*</label>
+        <input type="checkbox" id="lch">
+        <label >hard - 10*</label>
+        <h3>POTD-2</h3>
+        <input type="checkbox" id="done-2">
+        <label >DONE</label>
+        <input type="checkbox" id="gfge">
+        <label >easy - 2*</label>
+        <input type="checkbox" id="gfgm">
+        <label >medium - 5*</label>
+        <input type="checkbox" id="gfgh">
+        <label >hard - 10*</label>
+
+
+    </div>
+    <div id="daily prob lc">
+        <h2>daily leetcode - 3 suggested (17* average)</h2>
+        <label for="easy">Easy-2 *  </label>
+        <input type="number" id="easylc">
+        <label for="medium">Medium-5 *  </label>
+        <input type="number" id="mediumlc">
+        <label for="hard">Hard-10 *  </label>
+        <input type="number" id="hardlc">
+    </div>
+
+    <div id="daily prob cf">
+        <h2>daily codeforces - 3 suggested (17* average)</h2>
+        <label for="easy">1200+ 2 *  </label>
+        <input type="number" id="easycf">
+        <label for="medium">1400+ 5 *  </label>
+        <input type="number" id="mediumcf">
+        <label for="hard">1600+ 10 *  </label>
+        <input type="number" id="hardcf">
+    </div>
+
+    <div id="contest">
+        <h2>contest - virtual or live (17* average)</h2>
+        <label for="easy">Easy( A )-2 *  </label>
+        <input type="number" id="easyc">
+        <label for="medium">Medium( B / C )-5 *  </label>
+        <input type="number" id="mediumc">
+        <label for="hard">Hard( D / E / F )-10 *  </label>
+        <input type="number" id="hardc">
+    </div>
+
+    <div id="dev">
+        <h2>Development - (2 hour recommended - 10* )</h2>
+        <input type="checkbox" id="donedev">
+        <label >DONE</label>
+
+    </div>
+<div id="btn">
+   
+    <input type="submit" value="click after calculating" name="" />
+
+</div>
+<br>
+<br>
+<label for="">enter comma separated links.</label>
+<div id="links">
+
+    
+<textarea  id="easylinks" name="easylinks" rows="10" cols="50"></textarea>
+</div><div>
+    
+    <textarea id="mediumlinks" name="mediumlinks" rows="10" cols="50"></textarea>
+        </div>
+        <div>
+       
+        <textarea  id="hardlinks" name="hardlinks" rows="10" cols="50"></textarea>
+
+</div>
+  <label for="ex" id="val"></label>
+</form>
+<input type="submit" value=" calculate score " name="cal" id="cal" onclick="calc()" />
+<script>
+
+function calc(){
+   
+    var score_bot = 61;
+    var self = 0;
+    demo = document.getElementById("lce");
+    if(demo.checked){
+        score_bot+=2;
+        if(document.getElementById("done-1").checked)
+            self+=2;
+    }else if(document.getElementById("lcm").checked){
+        score_bot+=5;
+        if(document.getElementById("done-1").checked)
+            self+=5;
+    }else if(document.getElementById("lch").checked){
+        score_bot+=10;
+        if(document.getElementById("done-1").checked)
+            self+=10;
+    }
+
+    
+    self+=document.getElementById("easylc").value*2;
+    self+=document.getElementById("mediumlc").value*5;
+    self+=document.getElementById("hardlc").value*10;
+    self+=document.getElementById("easycf").value*2;
+    self+=document.getElementById("mediumcf").value*5;
+    self+=document.getElementById("hardcf").value*10;
+
+    self+=document.getElementById("easyc").value*2;
+    self+=document.getElementById("mediumc").value*5;
+    self+=document.getElementById("hardc").value*10;
+if(document.getElementById("donedev").checked)
+    self+=10;
+
+    val = document.getElementById("scb");
+    val.value=score_bot;
+    val = document.getElementById("scs").value=self;
+
+}
+
+
+</script>
+
+
+</body>
+
+</html>

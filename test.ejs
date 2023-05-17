@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+
+    <style>
+        
+        #div_easy a{
+            background-color: #00ff00;
+        }
+        #div_med a{
+            background-color: #ffff00;
+        }
+        #div_hard a{
+            background-color: #ff3300;
+        }
+        </style>
+
+
+</head>
+<body>
+<label id="easy">total easy = <%=easy.length%></label>
+<br>
+<label id="easy_count" style="display: none;" value="<%=easy.length%>"><%= easy.length%></label>
+<br>
+<label id="medium">total medium = <%=medium.length%></label>
+<br>
+<label id="medium_count" style="display: none;" value="<%=easy.length%>"><%= medium.length%></label>
+
+<br>
+<label id="hard">total hard = <%=hard.length%></label>
+<br>
+<label id="hard_count" style="display: none;" value="<%=easy.length%>"><%= hard.length%></label>
+
+
+<br><br>
+    <% var i=1 %>
+    <div id="div_easy">
+    <% easy.forEach(function(easy){ %>
+        <a id="easy_link" href="<%=easy%>" ><%= easy%></a>
+        <input type="checkbox">
+       
+        <br><br>
+        <% }) %>
+    </div>
+    <div id="div_med">
+        <% medium.forEach(function(medium){ %>
+            <a id="medium_link" href="<%=medium%>"><%= medium%></a>
+            <input type="checkbox">
+           
+            <br><br>
+            <% }) %>
+        </div>
+
+        <div id="div_hard">
+            <% hard.forEach(function(hard){ %>
+                <a id="hard_link" href="<%=hard%>"><%= hard%></a>
+                <input type="checkbox" >
+                
+                <br><br>
+                <% }) %>
+            </div>
+
+<br><br><br>
+
+    <label for="easy" >easy done</label>
+    <input type="number" id="easy_done" placeholder="0">
+    <br><br>
+    <label for="medium" >medium done</label>
+    <input type="number" id="medium_done" placeholder="0">
+    <br><br>
+    <label for="hard" >hard done</label>
+    <input type="number" id="hard_done" placeholder="0">
+    <br><br>
+        <button id="btn" onclick=fun()>calculate</button>
+<br><br>
+    <form action="/submit_test" method="post">
+
+        <input type="number" id="ans" name="ans" style="display: none;">
+        <input type="submit" value="click to submit" name="" />
+    </form>
+
+    <script>
+function fun(){
+    diff=0;
+    //console.log(diff);
+        ec=parseInt(document.getElementById("easy_count").innerText);
+        mc=parseInt(document.getElementById("medium_count").innerText);
+        hc=parseInt(document.getElementById("hard_count").innerText);
+        ecd=0;
+        mcd=0;
+        hcd=0;
+        ecd=document.getElementById("easy_done").value;
+        mcd=document.getElementById("medium_done").value;
+        hcd=document.getElementById("hard_done").value;
+        //console.log(ecd);
+
+    
+// var diff=0;
+        diff=ec*2 - ecd*2;
+        diff+=(mc*5 - mcd*5);
+        diff+=(hc*10 - hcd*10);
+
+        console.log(diff);
+
+        document.getElementById("ans").value=diff;
+}
+       
+
+    </script>
+</body>
+</html>

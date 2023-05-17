@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <title>Graph</title>
+    <script src="https://cdn.anychart.com/releases/8.11.0/js/anychart-base.min.js"></script>
+    <style type="text/css">      
+      html, body, #container { 
+        width: 100%; height: 100%; margin: 0; padding: 0; 
+      } 
+    </style>
+  </head>
+  <body>  
+    <label id="dates" style="display: none;" ><%= dates%></label>
+    <label id="scb" style="display: none;" ><%= scb_arr%></label>
+    <label id="scs" style="display: none;" ><%= scs_arr%></label>
+    <div id="container"></div>
+    <script>
+      anychart.onDocumentReady(function () {
+  
+        // add data
+
+        data = [[]];
+       
+        dates_string = document.getElementById("dates").innerText;
+        //for(var i = 0;i<data.length;i++){
+           // console.log(dates.length);
+        //}
+        date = dates_string.split(",@,");
+
+        scb_string = document.getElementById("scb").innerText;
+        //for(var i = 0;i<data.length;i++){
+           // console.log(dates.length);
+        //}
+        scb = scb_string.split(",@,");
+        scs_string = document.getElementById("scs").innerText;
+        //for(var i = 0;i<data.length;i++){
+           // console.log(dates.length);
+        //}
+        scs = scs_string.split(",@,");
+var total_bot=0;
+var total_self=0;
+            for(var i = 0 ; i<date.length;i++){
+                total_bot+=parseInt(scb[i]);
+                total_self+=parseInt(scs[i]);
+                data.push([date[i],total_bot,total_self]);
+            }
+
+        // create a data set
+        var dataSet = anychart.data.set(data);
+
+        // map the data for all series
+        var firstSeriesData = dataSet.mapAs({x: 0, value: 1});
+        var secondSeriesData = dataSet.mapAs({x: 0, value: 2});
+        //var thirdSeriesData = dataSet.mapAs({x: 0, value: 3});
+
+        // create a line chart
+        var chart = anychart.line();
+
+        // create the series and name them
+        var firstSeries = chart.line(firstSeriesData);
+        firstSeries.name("OPPONENT");
+        var secondSeries = chart.line(secondSeriesData);
+        secondSeries.name("YOU");
+       
+        // add a legend
+        chart.legend().enabled(true);
+  
+        // add a title
+        chart.title("ALWAYS YOU vs YOU");
+  
+        // specify where to display the chart
+        chart.container("container");
+  //console.log(data);
+        // draw the resulting chart
+        chart.draw();
+
+        chart.draw();
+  
+      });
+    </script>
+  </body>
+</html>
