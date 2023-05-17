@@ -48,6 +48,7 @@ let today = new Schema({
 
   
   
+  
 mongoose.connect(DB).then(()=>{
     console.log("connected to database");
 }).catch((err)=>{
