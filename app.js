@@ -1,4 +1,6 @@
 var express = require("express");
+const dotenv = require('dotenv');
+
 var app = express();
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -8,6 +10,9 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 
+dotenv.config({ path: './config.env' });
+const PORT = process.env.PORT || 3000;
+const DB = process.env.DATABASE;
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -41,10 +46,9 @@ let today = new Schema({
       }],
   });
 
-  DATABASE='mongodb+srv://UserName:Password@cluster0.jrfj4bn.mongodb.net/mernstck?retryWrites=true&w=majority'
-
   
-mongoose.connect(DATABASE).then(()=>{
+  
+mongoose.connect(DB).then(()=>{
     console.log("connected to database");
 }).catch((err)=>{
     console.log("not connected to database");
@@ -250,8 +254,6 @@ app.post("/submit", async (req,res)=>{
 
 
 
-
-
-app.listen(3000, () => {
-    console.log("Server listening on port " + " 3000");
+app.listen(PORT, () => {
+    console.log("Server listening on port " + `${PORT}`);
 });
