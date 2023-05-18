@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 dotenv.config({ path: './config.env' });
 const PORT = process.env.PORT || 3000;
-const DB = process.env.DATABASE;
+
 
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
@@ -49,7 +49,7 @@ let today = new Schema({
   
 
   
-mongoose.connect(DB).then(()=>{
+mongoose.connect('mongodb+srv://aman:21632AMAN@cluster0.jrfj4bn.mongodb.net/mernstck?retryWrites=true&w=majority').then(()=>{
     console.log("connected to database");
 }).catch((err)=>{
     console.log("not connected to database");
@@ -228,6 +228,7 @@ app.post("/submit", async (req,res)=>{
     var mediumlinks = req.body.mediumlinks;
     var hardlinks = req.body.hardlinks;
     
+    
 
     const easyarray = easylinks.split(",");
     const mediumarray = mediumlinks.split(",");
@@ -240,13 +241,18 @@ app.post("/submit", async (req,res)=>{
     const scs = req.body.scs;
 
     const today_data = new todays({date:dd,scoreBot:scb,self:scs,easy:easyarray,medium:mediumarray,hard:hardarray});
-   const get_it = await todays.find({date:dd});
-   if(!get_it){
-    today_data.save().then(() => {
-        //res.status(201).json({ message: "registered !! " });
-    }).catch((err)=>console.log(err));
-    //res.render(path.join(__dirname, "/graph.ejs"),{dates:dates,scb_arr:scb_arr,scs_arr:scs_arr});
-   }
+   //console.log(dd);
+   //console.log(today_data);
+    const get_it = await todays.find({date:dd});
+    console.log(get_it.length);
+    if(get_it.length === 0){
+        await  today_data.save().then(() => {
+            console.log("done");
+          }).catch((err)=>console.log(err));
+         
+    }
+    
+  
     
 
     
