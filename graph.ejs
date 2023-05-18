@@ -8,19 +8,25 @@
       } 
     </style>
   </head>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+
   <body>  
+
+    <canvas id="myChart" style="width:100%;max-width:800px"></canvas>
     <label id="dates" style="display: none;" ><%= dates%></label>
     <label id="scb" style="display: none;" ><%= scb_arr%></label>
     <label id="scs" style="display: none;" ><%= scs_arr%></label>
     <div id="container"></div>
     <script>
-      anychart.onDocumentReady(function () {
-  
-        // add data
 
-        data = [[]];
-       
-        dates_string = document.getElementById("dates").innerText;
+
+
+const xValues = [];
+
+
+       dates_string = document.getElementById("dates").innerText;
         //for(var i = 0;i<data.length;i++){
            // console.log(dates.length);
         //}
@@ -36,43 +42,86 @@
            // console.log(dates.length);
         //}
         scs = scs_string.split(",@,");
-
+data1=[];
+data2=[];
             for(var i = 0 ; i<date.length;i++){
-                data.push([date[i],parseInt(scb[i]),parseInt(scs[i])]);
+              
+              xValues.push(date[i]);
+
+              data1.push(parseInt(scb[i]));
+              data2.push(parseInt(scs[i]));
+                ///data.push([date[i],parseInt(scb[i]),parseInt(scs[i])]);
             }
 
-        // create a data set
-        var dataSet = anychart.data.set(data);
 
-        // map the data for all series
-        var firstSeriesData = dataSet.mapAs({x: 0, value: 1});
-        var secondSeriesData = dataSet.mapAs({x: 0, value: 2});
-        //var thirdSeriesData = dataSet.mapAs({x: 0, value: 3});
 
-        // create a line chart
-        var chart = anychart.line();
 
-        // create the series and name them
-        var firstSeries = chart.line(firstSeriesData);
-        firstSeries.name("OPPONENT");
-        var secondSeries = chart.line(secondSeriesData);
-        secondSeries.name("YOU");
+
+
+
+new Chart("myChart", {
+  type: "line",
+  data: {
+    labels: xValues,
+    datasets: [{ 
+      data: data1,
+      borderColor: "red",
+      fill: false
+    }, { 
+      data: data2,
+      borderColor: "green",
+      fill: false
+    }]
+  },
+  
+});
+
+
+
+
+
+
+
+
+  //     anychart.onDocumentReady(function () {
+  
+  //       // add data
+
+  //       data = [[]];
        
-        // add a legend
-        chart.legend().enabled(true);
-  
-        // add a title
-        chart.title("ALWAYS YOU vs YOU");
-  
-        // specify where to display the chart
-        chart.container("container");
-  //console.log(data);
-        // draw the resulting chart
-        chart.draw();
+ 
+  //       // create a data set
+  //       var dataSet = anychart.data.set(data);
 
-        chart.draw();
+  //       // map the data for all series
+  //       var firstSeriesData = dataSet.mapAs({x: 0, value: 1});
+  //       var secondSeriesData = dataSet.mapAs({x: 0, value: 2});
+  //       //var thirdSeriesData = dataSet.mapAs({x: 0, value: 3});
+
+  //       // create a line chart
+  //       var chart = anychart.line();
+
+  //       // create the series and name them
+  //       var firstSeries = chart.line(firstSeriesData);
+  //       firstSeries.name("OPPONENT");
+  //       var secondSeries = chart.line(secondSeriesData);
+  //       secondSeries.name("YOU");
+       
+  //       // add a legend
+  //       chart.legend().enabled(true);
   
-      });
+  //       // add a title
+  //       chart.title("ALWAYS YOU vs YOU");
+  
+  //       // specify where to display the chart
+  //       chart.container("container");
+  // //console.log(data);
+  //       // draw the resulting chart
+  //       chart.draw();
+
+        
+  
+  //    });
     </script>
   </body>
 </html>

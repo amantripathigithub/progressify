@@ -244,7 +244,7 @@ app.post("/submit", async (req,res)=>{
    //console.log(dd);
    //console.log(today_data);
     const get_it = await todays.find({date:dd});
-    console.log(get_it.length);
+    //console.log(get_it.length);
     if(get_it.length === 0){
         await  today_data.save().then(() => {
             console.log("done");
