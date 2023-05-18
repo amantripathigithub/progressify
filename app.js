@@ -127,18 +127,39 @@ app.get("/test", async (req, res) => {
     const y= date[2];
 
     const get_all = await todays.find({});
-    var easy = [];
+    var easy=[];
     var med=[];
     var hard=[];
+    
     for(var i=get_all.length-1;i>=0 && i>=get_all.length-6;i--){
         if(get_all[i].scoreBot===0)
             break;
-        easy.push(get_all[i].easy);
-        med.push(get_all[i].medium);
-        hard.push(get_all[i].hard);
+            if(get_all[i].easy.length>0){
+                for(var j=0;j<get_all[i].easy.length;j++){
+                    if(get_all[i].easy[j]!="")
+                    easy.push(get_all[i].easy[j]);
+                }
+            }
+            if(get_all[i].medium.length>0){
+                for(var j=0;j<get_all[i].medium.length;j++){
+                    if(get_all[i].medium[j]!="")
+                    med.push(get_all[i].medium[j]);
+                }
+            }
+            if(get_all[i].hard.length>0){
+                for(var j=0;j<get_all[i].hard.length;j++){
+                    if(get_all[i].hard[j]!="")
+                    hard.push(get_all[i].hard[j]);
+                }
+            }
+        
+        // if(get_all[i].medium.length>0)
+        // med.push(get_all[i].medium);
+        // if(get_all[i].hard.length>0)
+        // hard.push(get_all[i].hard);
 
     }
-    //console.log(easy);
+    console.log(hard.length);
 
     res.render(path.join(__dirname, "/test.ejs"),{easy:easy,medium:med,hard:hard});
 
@@ -168,7 +189,7 @@ app.post("/submit_test", async (req,res)=>{
     const d = date[0];
     const m = date[1];
     const y= date[2];
-    if(date.getDay()===7){
+  
         var diff = req.body.ans;
 
         
@@ -179,13 +200,32 @@ app.post("/submit_test", async (req,res)=>{
             //res.status(201).json({ message: "registered !! " });
         }).catch((err)=>console.log(err));
 
-    }else{
-        res.render(path.join(__dirname, "/error.ejs"));
-    }
+    
+        const data = await todays.find({});
+        const size = data.length;
+        var dates=[];
+        var scb_arr=[];
+        var scs_arr=[];
+        for(var i =0;i<size;i++){
+            dates.push(data[i].date);
+            dates.push("@");
+            scb_arr.push(data[i].scoreBot);
+            scb_arr.push("@");
+            scs_arr.push(data[i].self);
+            scs_arr.push("@");
+    
+        }
+        //console.log(data);
+        //console.log(size);
+    
+    
+    
+    
+    
+        res.render(path.join(__dirname, "/graph2.ejs"),{dates:dates,scb_arr:scb_arr,scs_arr:scs_arr});
+    
 
-
-
-   // res.render(path.join(__dirname, "/graph.ejs"),{dates:dates,scb_arr:scb_arr,scs_arr:scs_arr});
+   //return res.render(path.join(__dirname, "/graph.ejs"),{dates:dd,scb_arr:scb_arr,scs_arr:scs_arr});
 });
 
 
