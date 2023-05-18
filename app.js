@@ -194,7 +194,7 @@ app.post("/submit_test", async (req,res)=>{
 
         
         const dd = d+"-"+m+"-"+y;
-        const today_data = new todays({date:dd,scoreBot:66,self:-1*diff,easy:[],medium:[],hard:[]});
+        const today_data = new todays({date:dd,scoreBot:0,self:-1*diff,easy:[],medium:[],hard:[]});
 
         today_data.save().then(() => {
             //res.status(201).json({ message: "registered !! " });
