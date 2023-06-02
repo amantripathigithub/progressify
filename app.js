@@ -49,7 +49,7 @@ let today = new Schema({
   
 
   
-mongoose.connect('mongodb+srv://:@cluster0.jrfj4bn.mongodb.net/mernstck?retryWrites=true&w=majority').then(()=>{
+mongoose.connect('mongodb+srv://aman:21632AMAN@cluster0.jrfj4bn.mongodb.net/mernstck?retryWrites=true&w=majority').then(()=>{
     console.log("connected to database");
 }).catch((err)=>{
     console.log("not connected to database");
