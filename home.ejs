@@ -49,15 +49,7 @@
         <input type="number" id="hardlc">
     </div>
 
-    <div id="daily prob cf">
-        <h2>daily codeforces - 3 suggested (17* average)</h2>
-        <label for="easy">1200+ 2 *  </label>
-        <input type="number" id="easycf">
-        <label for="medium">1400+ 5 *  </label>
-        <input type="number" id="mediumcf">
-        <label for="hard">1600+ 10 *  </label>
-        <input type="number" id="hardcf">
-    </div>
+  
 
     <div id="contest">
         <h2>contest - virtual or live (17* average)</h2>
@@ -126,9 +118,7 @@ function calc(){
     self+=document.getElementById("easylc").value*2;
     self+=document.getElementById("mediumlc").value*5;
     self+=document.getElementById("hardlc").value*10;
-    self+=document.getElementById("easycf").value*2;
-    self+=document.getElementById("mediumcf").value*5;
-    self+=document.getElementById("hardcf").value*10;
+   
 
     self+=document.getElementById("easyc").value*2;
     self+=document.getElementById("mediumc").value*5;
