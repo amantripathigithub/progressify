@@ -97,8 +97,8 @@ function calc(){
    
     var score_bot = 37;
     var self = 0;
-    demo = document.getElementById("lce");
-    if(demo.checked){
+  
+    if(document.getElementById("lce").checked){
         score_bot+=2;
         if(document.getElementById("done-1").checked)
             self+=2;
@@ -111,6 +111,21 @@ function calc(){
         if(document.getElementById("done-1").checked)
             self+=10;
     }
+
+    if(document.getElementById("gfge").checked){
+        score_bot+=2;
+        if(document.getElementById("done-2").checked)
+            self+=2;
+    }else if(document.getElementById("gfgm").checked){
+        score_bot+=5;
+        if(document.getElementById("done-2").checked)
+            self+=5;
+    }else if(document.getElementById("gfgh").checked){
+        score_bot+=10;
+        if(document.getElementById("done-2").checked)
+            self+=10;
+    }
+    
 
     
 
