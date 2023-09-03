@@ -290,6 +290,12 @@ app.post("/submit", async (req,res)=>{
             console.log("done");
           }).catch((err)=>console.log(err));
          
+    }else{
+        await deleteOne({date:dd});
+        await  today_data.save().then(() => {
+            console.log("done");
+          }).catch((err)=>console.log(err));
+        
     }
     
   
