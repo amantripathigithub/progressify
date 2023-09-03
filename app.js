@@ -264,9 +264,9 @@ app.post("/submit", async (req,res)=>{
     const y= date[2];
     const dd = d+"-"+m+"-"+y;
 
-    var easylinks = req.body.easylinks;
-    var mediumlinks = req.body.mediumlinks;
-    var hardlinks = req.body.hardlinks;
+    var easylinks = "a,b";
+    var mediumlinks = "a,b";
+    var hardlinks = "a,b";
     
     
 
