@@ -285,16 +285,7 @@ app.post("/submit", async (req,res)=>{
    //console.log(today_data);
     const get_it = await todays.find({date:dd});
     //console.log(get_it.length);
-    if(get_it.length === 1){
-
-
-        await deleteOne({date:dd}, function(err, obj) {
-    if (err) throw err;
-    console.log("1 document deleted");
-    
-  });
-    }
-    get_it = await todays.find({date:dd});
+   
     if(get_it.length === 0){
         await  today_data.save().then(() => {
             console.log("done");
