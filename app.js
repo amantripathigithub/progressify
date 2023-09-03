@@ -291,7 +291,11 @@ app.post("/submit", async (req,res)=>{
           }).catch((err)=>console.log(err));
          
     }else{
-        await deleteOne({date:dd});
+        await deleteOne({date:dd}, function(err, obj) {
+    if (err) throw err;
+    console.log("1 document deleted");
+    
+  });
         await  today_data.save().then(() => {
             console.log("done");
           }).catch((err)=>console.log(err));
