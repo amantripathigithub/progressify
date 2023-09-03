@@ -39,6 +39,15 @@
 
 
     </div>
+
+ <div id="academics">
+        <h2>academics - (10 *)</h2>
+        <input type="checkbox" id="acad">
+        <label >DONE</label>
+    </div>
+
+
+
     <div id="daily prob lc">
         <h2>daily leetcode - 3 suggested (17* average)</h2>
         <label for="easy">Easy-2 *  </label>
@@ -95,7 +104,7 @@
 
 function calc(){
    
-    var score_bot = 37;
+    var score_bot = 47;
     var self = 0;
   
     if(document.getElementById("lce").checked){
@@ -127,7 +136,9 @@ function calc(){
     }
     
 
-    
+    if(document.getElementById("acad").checked){
+        self+=10;
+    }
 
     
     self+=document.getElementById("easylc").value*2;
